@@ -5,6 +5,7 @@ from utilities.views import register_model_view
 from .. import filtersets, forms, tables
 from ..models import ApiServer, Zone
 from ..filtersets import ApiServerFilterSet
+from ..forms.filtersets import ApiServerFilterForm
 from ..forms.model_forms import ApiServerForm
 from ..forms.sync import ZoneScheduleForm, ScriptForm
 from ..tables import ZoneTable

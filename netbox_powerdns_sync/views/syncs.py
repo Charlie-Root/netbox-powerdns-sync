@@ -88,7 +88,7 @@ class SyncResultView(ContentTypePermissionRequiredMixin, View):
         # script = module.scripts[job.name]()
 
         # If this is an HTMX request, return only the result HTML
-        if request.htmx:
+        if request.headers.get('HX-Request'):
             response = render(
                 request,
                 "netbox_powerdns_sync/htmx/sync_result.html",
