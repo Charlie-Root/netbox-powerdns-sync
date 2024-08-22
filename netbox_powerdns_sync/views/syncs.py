@@ -10,7 +10,7 @@ from utilities.rqworker import get_workers_for_queue
 from utilities.views import ContentTypePermissionRequiredMixin
 
 from ..constants import JOB_NAME_DEVICE, JOB_NAME_INTERFACE, JOB_NAME_IP, JOB_NAME_SYNC
-from ..forms import ZoneScheduleForm
+from ..forms.sync import ZoneScheduleForm
 from ..jobs import PowerdnsTaskFullSync
 from ..models import Zone
 from ..tables import SyncJobTable
