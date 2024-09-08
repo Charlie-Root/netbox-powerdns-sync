@@ -5,10 +5,10 @@ from dcim.models import Device, Interface
 from django.contrib.contenttypes.models import ContentType
 from extras.choices import ObjectChangeActionChoices
 from extras.models import ObjectChange
-from ipam.models import IPAddress
+from ipam.models import IPAddress, FHRPGroup
 from netbox.plugins.utils import get_plugin_config
 from powerdns import Comment, RRSet
-from virtualization.models import VirtualMachine, VMInterface, FHRPGroup
+from virtualization.models import VirtualMachine, VMInterface
 
 from .constants import FAMILY_TYPES, PLUGIN_NAME, PTR_TYPE, PTR_ZONE_SUFFIXES
 
