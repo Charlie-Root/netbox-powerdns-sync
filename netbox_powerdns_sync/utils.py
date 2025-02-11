@@ -37,9 +37,11 @@ def get_custom_domain(ip: IPAddress) -> str | None:
 
     if isinstance(ip.assigned_object, VMInterface):
         vm = VirtualMachine.objects.get(id=ip.assigned_object.virtual_machine.id)
-        return vm.cf.get(custom_domain, None)
+        
+        if vm:
+            return vm.cf.get(custom_domain, None)
 
-    return ""
+        return ""
 
 
 def get_default_rdns() -> str | None:
