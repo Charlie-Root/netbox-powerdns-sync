@@ -1,7 +1,11 @@
 from netbox.plugins import PluginConfig
-
+from extras.registry import registry
 from .version import __version__
-
+from .models import Zone
+registry.register_model_permissions(
+    Zone,
+    actions=['view', 'add', 'change', 'delete', 'sync']  # include custom actions you want
+)
 
 class NetBoxPowerdnsSyncConfig(PluginConfig):
     name = "netbox_powerdns_sync"
