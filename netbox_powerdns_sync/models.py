@@ -178,7 +178,9 @@ class Zone(NetBoxModel):
     #   for 'netbox_dns.Zone.tags' clashes with reverse accessor for
     #   'netbox_powerdns_sync.Zone.tags'
     # So let's disable generating reverse relation here.
-    tags = TaggableManager(through="extras.TaggedItem", related_name="+")
+    @property
+    def tags(self):
+        raise AttributeError("'Zone' object has no attribute 'tags'")
 
     @property
     def is_reverse(self) -> bool:
@@ -309,7 +311,6 @@ class Zone(NetBoxModel):
         "naming_ip_method",
         "naming_device_method",
         "naming_fgrpgroup_method",
-        "tags",
     )
 
     class Meta:
