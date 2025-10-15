@@ -1,5 +1,4 @@
 from netbox.plugins import PluginConfig
-from core.models import ObjectType
 from .version import __version__
 
 class NetBoxPowerdnsSyncConfig(PluginConfig):
