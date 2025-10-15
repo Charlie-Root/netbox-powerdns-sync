@@ -318,6 +318,10 @@ class Zone(NetBoxModel):
 
     class Meta:
         ordering = ("name",)
+        permissions = (
+            ("sync_zone", "Can sync zone"),
+            # other custom permissions if needed
+        )
         constraints = [
             models.UniqueConstraint(
                 fields=["is_default"],
