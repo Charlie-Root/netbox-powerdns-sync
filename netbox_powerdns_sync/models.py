@@ -177,10 +177,13 @@ class Zone(NetBoxModel):
     #   netbox_dns.Zone.tags: (fields.E304) Reverse accessor 'Tag.zone_set'
     #   for 'netbox_dns.Zone.tags' clashes with reverse accessor for
     #   'netbox_powerdns_sync.Zone.tags'
+    # netbox-plugin-dns also has Zone model
+    # if both plugins are installed, django complains:
+    #   netbox_dns.Zone.tags: (fields.E304) Reverse accessor 'Tag.zone_set'
+    #   for 'netbox_dns.Zone.tags' clashes with reverse accessor for
+    #   'netbox_dns.Zone.tags'
     # So let's disable generating reverse relation here.
-    @property
-    def tags(self):
-        raise AttributeError("'Zone' object has no attribute 'tags'")
+    tags = TaggableManager(through="extras.TaggedItem", related_name="+")
 
     @property
     def is_reverse(self) -> bool:
