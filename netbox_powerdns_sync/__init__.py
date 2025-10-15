@@ -1,5 +1,5 @@
 from netbox.plugins import PluginConfig
-
+from core.models import ObjectType
 from .version import __version__
 
 class NetBoxPowerdnsSyncConfig(PluginConfig):
@@ -21,6 +21,7 @@ class NetBoxPowerdnsSyncConfig(PluginConfig):
 
     def ready(self):
         from .models import Zone
+        ObjectType.objects.get_or_create(app_label='netbox_powerdns_sync', model='zone')
         super().ready()
 
 

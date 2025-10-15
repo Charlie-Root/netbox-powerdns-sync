@@ -8,7 +8,7 @@ from django.forms import ValidationError
 from django.urls import reverse
 from extras.models import Tag
 from ipam.models import FHRPGroup, IPAddress
-from netbox.models import NetBoxModel
+from netbox.models import NetBoxModel, ChangeLoggedModel
 from taggit.managers import TaggableManager
 from virtualization.models import VMInterface
 
@@ -79,7 +79,7 @@ class ApiServer(NetBoxModel):
         return powerdns.PDNSEndpoint(api_client).servers[0]
 
 
-class Zone(NetBoxModel):
+class Zone(ChangeLoggedModel):
     name = models.CharField(
         help_text="Domain name of zone. Must be fully qualified.",
         max_length=200,
