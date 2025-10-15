@@ -1,4 +1,4 @@
-from netbox.core.models import Job
+from core.models import Job
 from django.contrib import messages
 from django.contrib.contenttypes.models import ContentType
 from django.db.models import Q
