@@ -19,6 +19,12 @@ class NetBoxPowerdnsSyncConfig(PluginConfig):
     }
 
     def ready(self):
+        @receiver(post_migrate)
+        def add_jobable_object_type(sender, **kwargs):
+            obj_type, created = ObjectType.objects.get_or_create(
+                app_label='netbox_powerdns_sync',
+                model='zone'
+            )
         super().ready()
 
 
