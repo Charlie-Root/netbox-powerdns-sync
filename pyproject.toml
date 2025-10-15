@@ -2,11 +2,11 @@
 name = "netbox-powerdns-sync"
 version = "1.0.1"
 description = "Sync DNS records in PowerDNS with NetBox"
-authors = ["Matej Vadnjal <matej.vadnjal@arnes.si>", "Wieger Bontekoe <wieger.bontekoe@productsup.com>"]
+authors = ["Wieger Bontekoe <wieger.bontekoe@productsup.com>", "Matej Vadnjal <matej.vadnjal@arnes.si>"]
 
 license = "MIT"
 readme = "README.md"
-homepage = "https://github.com/ArnesSI/netbox-powerdns-sync/"
+homepage = "https://github.com/Charlie-Root/netbox-powerdns-sync/"
 keywords = ["netbox", "netbox-plugin", "powerdns"]
 packages = [{include = "netbox_powerdns_sync"}]
 include = ["netbox_powerdns_sync/templates/*.html"]
