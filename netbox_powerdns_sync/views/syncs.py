@@ -1,3 +1,5 @@
+import logging
+
 from core.models import Job
 from django.contrib import messages
 from django.contrib.contenttypes.models import ContentType
@@ -8,6 +10,8 @@ from django.views.generic import View
 from utilities.querydict import normalize_querydict
 from utilities.rqworker import get_workers_for_queue
 from utilities.views import ContentTypePermissionRequiredMixin
+
+logger = logging.getLogger(__name__)
 
 from ..constants import JOB_NAME_DEVICE, JOB_NAME_INTERFACE, JOB_NAME_IP, JOB_NAME_SYNC
 from ..forms.sync import ZoneScheduleForm
@@ -142,6 +146,14 @@ class SyncScheduleView(View):
             )
         elif form.is_valid():
             for zone in form.cleaned_data["zones"]:
+                logger.info(f"Zone: {zone}")
+                logger.info(f"Zone has tags: {hasattr(zone, 'tags')}")
+                logger.info(f"Zone model has tags: {hasattr(Zone, 'tags')}")
+                try:
+                    field = Zone._meta.get_field('tags')
+                    logger.info(f"Zone has field 'tags': {field}")
+                except Exception as e:
+                    logger.info(f"Zone does not have field 'tags': {e}")
                 Job.enqueue(
                     PowerdnsTaskFullSync.run_full_sync,
                     instance=zone,
