@@ -1,5 +1,6 @@
 from netbox.plugins import PluginConfig
 from .version import __version__
+from django.dispatch import receiver
 
 class NetBoxPowerdnsSyncConfig(PluginConfig):
     name = "netbox_powerdns_sync"
