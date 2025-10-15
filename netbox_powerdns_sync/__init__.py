@@ -20,8 +20,6 @@ class NetBoxPowerdnsSyncConfig(PluginConfig):
     }
 
     def ready(self):
-        from .models import Zone
-        ObjectType.objects.get_or_create(app_label='netbox_powerdns_sync', model='zone')
         super().ready()
 
 
