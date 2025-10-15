@@ -146,14 +146,14 @@ class SyncScheduleView(View):
             )
         elif form.is_valid():
             for zone in form.cleaned_data["zones"]:
-                print(f"Zone: {zone}")
-                print(f"Zone has tags: {hasattr(zone, 'tags')}")
-                print(f"Zone model has tags: {hasattr(Zone, 'tags')}")
+                messages.error(request, f"Zone: {zone}")
+                messages.error(request, f"Zone has tags: {hasattr(zone, 'tags')}")
+                messages.error(request, f"Zone model has tags: {hasattr(Zone, 'tags')}")
                 try:
                     field = Zone._meta.get_field('tags')
-                    print(f"Zone has field 'tags': {field}")
+                    messages.error(request, f"Zone has field 'tags': {field}")
                 except Exception as e:
-                    print(f"Zone does not have field 'tags': {e}")
+                    messages.error(request, f"Zone does not have field 'tags': {e}")
                 Job.enqueue(
                     PowerdnsTaskFullSync.run_full_sync,
                     instance=zone,
