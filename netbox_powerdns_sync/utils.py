@@ -3,8 +3,8 @@ import unicodedata
 
 from dcim.models import Device, Interface
 from django.contrib.contenttypes.models import ContentType
-from netbox.core.choices import ObjectChangeActionChoices
-from extras.models import ObjectChange
+from core.choices import ObjectChangeActionChoices
+from core.models import ObjectChange
 from ipam.models import IPAddress, FHRPGroup
 from netbox.plugins.utils import get_plugin_config
 from powerdns import Comment, RRSet
