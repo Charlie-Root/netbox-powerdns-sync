@@ -2,11 +2,11 @@ import logging
 import traceback
 from datetime import timedelta
 
-from core.choices import JobStatusChoices
-from core.models import Job
+from netbox.core.choices import JobStatusChoices
+from netbox.core.models import Job
 from dcim.models import Device, Interface
 from django.db.models import Q
-from extras.choices import LogLevelChoices
+from netbox.core.choices import LogLevelChoices
 from ipam.models import FHRPGroup, IPAddress
 from netaddr import IPNetwork
 from virtualization.models import VirtualMachine, VMInterface
