@@ -79,7 +79,7 @@ class ApiServer(NetBoxModel):
         return powerdns.PDNSEndpoint(api_client).servers[0]
 
 
-class Zone(ChangeLoggedModel):
+class Zone(NetBoxModel):
     name = models.CharField(
         help_text="Domain name of zone. Must be fully qualified.",
         max_length=200,
