@@ -290,9 +290,9 @@ class PowerdnsTaskIP(PowerdnsTask):
 
 
 class PowerdnsTaskFullSync(PowerdnsTask):
-    def __init__(self, job: Job) -> None:
-        super().__init__(job)
-        self.zone: Zone = job.object
+    def __init__(self, zone: Zone, job: Job | None = None) -> None:
+        super().__init__(job)  # job can be None if you want
+        self.zone: Zone = zone
 
     @classmethod
     def run_full_sync(cls, zone_id=None, **kwargs):
