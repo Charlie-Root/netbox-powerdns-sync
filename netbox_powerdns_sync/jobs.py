@@ -343,7 +343,7 @@ class PowerdnsTaskFullSync(PowerdnsTask):
             task.log_failure(
                 f"An exception occurred: `{type(e).__name__}: {e}`\n```\n{stacktrace}\n```"
             )
-            task.job.data = task.job.data or dict()
+            task.job and setattr(task.job, 'data', task.job.data or {})
             task.job.terminate(status=JobStatusChoices.STATUS_ERRORED)
 
         # Schedule the next job if an interval has been set
