@@ -299,17 +299,18 @@ class PowerdnsTaskFullSync(PowerdnsTask):
         self.zone: Zone = zone
 
     @classmethod
-    def run_full_sync(cls, zone_id=None, **kwargs):
+    def run_full_sync(cls, zone_id=None, job=None):
         if zone_id:
             zone = Zone.objects.get(pk=zone_id)
         else:
             raise Exception("Zone ID not provided")
 
-        task = cls(zone)
+        task = cls(zone, job)
 
         try:
-            task.log_debug(f"Starting sync for zone {task.zone}")
-            task.job.start()
+            if task.job:
+                task.log_debug(f"Starting sync for zone {task.zone}")
+                task.job.start()
             if not task.zone.enabled:
                 task.log_warning(
                     f"Zone {task.zone} is disabled for updates, not syncing"
