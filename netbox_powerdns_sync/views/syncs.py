@@ -156,12 +156,13 @@ class SyncScheduleView(View):
                     messages.error(request, f"Zone does not have field 'tags': {e}")
                 Job.enqueue(
                     PowerdnsTaskFullSync.run_full_sync,
-                    #instance=zone,
+                    zone_id=zone.id,
                     name=JOB_NAME_SYNC,
                     user=request.user,
                     schedule_at=form.cleaned_data.get("_schedule_at"),
                     interval=form.cleaned_data.get("_interval"),
                 )
+
                 messages.success(request, f"Scheduled sync job for zone {zone}")
 
         return redirect("plugins:netbox_powerdns_sync:sync_jobs")
