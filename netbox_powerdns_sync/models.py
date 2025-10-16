@@ -11,7 +11,7 @@ from ipam.models import FHRPGroup, IPAddress
 from netbox.models import NetBoxModel, ChangeLoggedModel
 from taggit.managers import TaggableManager
 from virtualization.models import VMInterface
-
+from netbox.models.features import JobsMixin
 from .choices import NamingDeviceChoices, NamingFgrpGroupChoices, NamingIpChoices
 from .constants import JOB_NAME_SYNC
 from .querysets import EnabledQuerySet, ZoneQuerySet
@@ -79,7 +79,7 @@ class ApiServer(NetBoxModel):
         return powerdns.PDNSEndpoint(api_client).servers[0]
 
 
-class Zone(NetBoxModel):
+class Zone(JobsMixin, NetBoxModel):
     name = models.CharField(
         help_text="Domain name of zone. Must be fully qualified.",
         max_length=200,
