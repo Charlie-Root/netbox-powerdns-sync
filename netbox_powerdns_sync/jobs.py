@@ -31,6 +31,9 @@ logger = logging.getLogger("netbox.netbox_powerdns_sync.jobs")
 
 class JobLoggingMixin:
     def log(self, level: str, msg: str) -> None:
+        if not hasattr(self, 'job') or self.job is None:
+            # optionally, handle missing job context
+            return
         data = self.job.data or {}
         logs = data.get("log", [])
         logs.append(
@@ -41,7 +44,8 @@ class JobLoggingMixin:
         )
         data["log"] = logs
         self.job.data = data
-
+        self.job.save()  # Don't forget to save the job data
+        
     def log_debug(self, msg: str) -> None:
         logger.debug(msg)
         self.log(LogLevelChoices.LOG_DEFAULT, msg)
