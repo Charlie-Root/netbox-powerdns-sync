@@ -156,7 +156,7 @@ class SyncScheduleView(View):
                     messages.error(request, f"Zone does not have field 'tags': {e}")
                 Job.enqueue(
                     PowerdnsTaskFullSync.run_full_sync,
-                    instance=zone,
+                    #instance=zone,
                     name=JOB_NAME_SYNC,
                     user=request.user,
                     schedule_at=form.cleaned_data.get("_schedule_at"),
