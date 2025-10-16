@@ -45,10 +45,10 @@ class JobLoggingMixin:
         data["log"] = logs
         self.job.data = data
         self.job.save()  # Don't forget to save the job data
-        
+
     def log_debug(self, msg: str) -> None:
         logger.debug(msg)
-        self.log(LogLevelChoices.LOG_DEFAULT, msg)
+        self.log(LogLevelChoices.LOG_DEBUG, msg)
 
     def log_success(self, msg: str) -> None:
         logger.info(msg)
